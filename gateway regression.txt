@@ -1,0 +1,282 @@
+* Send New Order Fix message to Market
+	
+	[09:30:23.331@107818/info] # 95 AUTE> 8=FIX.4.2|9=175|35=D|34=423|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-13:30:23|11=9591|21=1|38=20|54=1|55=_STW60|40=2|60=20190910-13:30:23|11130=|44=9.170000|59=0|207=E1|6761=N|9230=CHIX,AQUIS|10=000|
+
+* Send Cancel Request Fix message to Market
+		
+	[09:30:43.720@107818/info] # 95 AUTE> 8=FIX.4.2|9=126|35=F|34=424|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-13:30:43|11=9592|41=9591|38=20|54=1|55=_STW60|60=20190910-13:30:43|11130=|10=052|
+
+
+* Send Cancel Replace Fix message to Market
+	
+	[09:35:31.548@107818/info] # 95 AUTE> 8=FIX.4.2|9=175|35=D|34=434|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-13:35:31|11=9593|21=1|38=50|54=1|55=_STW60|40=2|60=20190910-13:35:31|11130=|44=9.240000|59=0|207=E1|6761=N|9230=CHIX,AQUIS|10=013|
+	
+	[09:35:45.085@115969/info] [Trx] TrxID=7 CNCL REPLACE: SAVARGAS01000003M17738E100000
+
+	[09:35:45.086@107818/info] # 95 AUTE> 8=FIX.4.2|9=141|35=G|34=435|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-13:35:45|11=9594|41=9593|38=20|54=1|55=_STW60|60=20190910-13:35:45|40=2|21=1|44=9.240000|10=235|
+
+	
+* Send Heartbeat Fix message to Market
+	[09:44:15.421@107814/debug] [SessionTimer] Send HeartBeat
+	[09:44:15.421@107818/info] # 95 AUTE> 8=FIX.4.2|9=061|35=0|34=452|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-13:44:15|10=162|
+
+	[09:44:45.424@107814/debug] [SessionTimer] Send HeartBeat
+	[09:44:45.424@107818/info] # 95 AUTE> 8=FIX.4.2|9=061|35=0|34=453|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-13:44:45|10=166|
+
+
+* Receive Hearbeat Fix messages from Market
+	
+	[09:44:17.326@107817/info] # 95 AUTE< 8=FIX.4.2|9=070|35=0|34=456|52=20190910-13:44:17|49=PPRO8|50=PPRO8_TEST|56=PPRO8_TEST|10=247|
+	[09:44:47.326@107817/info] # 95 AUTE< 8=FIX.4.2|9=070|35=0|34=457|52=20190910-13:44:47|49=PPRO8|50=PPRO8_TEST|56=PPRO8_TEST|10=251|
+		
+* Convert Accepted Fix messages from Market into OSTAT
+
+	[09:55:31.909@107818/info] # 95 AUTE> 8=FIX.4.2|9=175|35=D|34=476|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-13:55:31|11=9596|21=1|38=20|54=1|55=_STW60|40=2|60=20190910-13:55:31|11130=|44=9.280000|59=0|207=E1|6761=N|9230=CHIX,AQUIS|10=027|
+	[09:55:31.909@107818/info] [Trx] TrxID=11 SENT
+	[09:55:31.909@105350/info] [TrxStorage] SetRecord TrxID(11) Pos(10)
+	[09:55:31.909@107818/debug] DbTransactionBackup::AddTransaction: Transaction: {(Pos=0 TrxId=11 ParentId=0 ClientOrderId=9596 ExecBrokerId=95 GatewayId=1179 SeqNumber=476 OrderNUmber=SAVARGAS01000004M17738E100000 IsOstat=N OrderFlags=8 TrxFlag=Parent)OrderNew MessageId=11 ServerId=0 ServerType=InvalidServerType IsLittleEndian=T IpAddress=0 Price=928000000 Shares=20 TimeInForceSeconds=0 Keystroke=112 Gateway=1179 Destination=333 Currency=1 OrderFlags=8 MarketId=61 Side=66 OrderType=50 TimeInForce=48 OrderNumber=SAVARGAS01000004M17738E100000 Trader=SAVARGAS Account=1ORBX00001OR3SAVARGASUSD1 Symbol=_STW60 OnBehalfOf=}
+
+
+* Convert Cancelled Fix messages from Market into OSTAT
+
+	[09:56:05.904@107818/info] # 95 AUTE> 8=FIX.4.2|9=126|35=F|34=478|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-13:56:05|11=9597|41=9596|38=20|54=1|55=_STW60|60=20190910-13:56:05|11130=|10=083|
+	
+	[09:56:05.904@107818/info] [TrxData]  SendCnclState
+	[09:56:05.904@107818/info] [Trx] TrxID=13 SENT
+	[09:56:05.904@107818/debug] DbTransactionBackup::AddTransaction: Transaction: {(Pos=2 TrxId=13 ParentId=11 ClientOrderId=9597 ExecBrokerId=95 GatewayId=1179 SeqNumber=478 OrderNUmber=SAVARGAS01000004M17738E100000 IsOstat=N OrderFlags=0 TrxFlag=NONE)OrderCancel MessageId=14 ServerId=0 ServerType=InvalidServerType IsLittleEndian=T IpAddress=0 OrderQuantity=20 TransactionId=9596 GWServerID=1 Keystroke=27 Gateway=1179 Destination=333 MarketId=61 Side=66 OrderNumber=SAVARGAS01000004M17738E100000 Trader=SAVARGAS Account= Symbol=_STW60 GatewayOrderID=3 OnBehalfOf=BRMS}
+
+	[09:56:05.904@107818/debug] [Fix42] CnclOrder: (OrderCancel MessageId=14 ServerId=0 ServerType=InvalidServerType IsLittleEndian=T IpAddress=0 OrderQuantity=20 TransactionId=9596 GWServerID=1 Keystroke=27 Gateway=1179 Destination=333 MarketId=61 Side=66 OrderNumber=SAVARGAS01000004M17738E100000 Trader=SAVARGAS Account= Symbol=_STW60 GatewayOrderID=3 OnBehalfOf=BRMS)
+
+
+* Convert Filled Fix messages from Market into OSTAT
+	[10:05:58.462@107818/info] # 95 AUTE> 8=FIX.4.2|9=176|35=D|34=498|49=SAGE_TEST_01|56=QMTF_FIX|52=20190910-14:05:58|11=9598|21=1|38=20|54=1|55=_STW60|40=2|60=20190910-14:05:58|11130=|44=10.050000|59=0|207=E1|6761=N|9230=CHIX,AQUIS|10=079|
+
+	[10:05:58.462@107821/debug] DbTransactionBackup::AddTransaction: Transaction: {(Pos=1 TrxId=16 ParentId=15 ClientOrderId=0 ExecBrokerId=95 GatewayId=1179 SeqNumber=505 OrderNUmber=SAVARGAS01000005M17738E100000 IsOstat=Y OrderFlags=8 TrxFlag=NONE)OrderStatus: MessageId=211 ServerId=0 ServerType=OPC IsLittleEndian=F IpAddress=0 DataTime=20190910-10:05:58.000 OrderClass=1420 Symbol=_STW60.E1 Side=B(Buy) OrderNumber=SAVARGAS01000005M17738E100000 FillingECN= GatewayOrderID=4 ClOrderID=9598 Price=1005000000 Shares=20 SeqNumber=505 Position=1 OrderState=0(Accepted by GW) ChargeGW=0 ChargeAct=0 ChargeSec=0 ChargeExec=0 ChageClr=0 CancelTrxID=9598 TransactionId=16 Destination=333 GWServerID=1 MsgSeqNumber=8 OPCServerID=1 Gateway=1179 OrderFlags=8 Currency=1 CurrencyCharge=0 CurrencyChargeGway=0 CurrencyChargeAct=0 CurrencyChargeSec=0 CurrencyChargeExec=0 CurrencyChargeClr=0 IsJunkTrade=0 Trade=78 Liquidity='' Account=1ORBX00001OR3SAVARGASUSD1 InfoCode=255}
+	
+	[10:05:58.463@107821/debug] DbTransactionBackup::AddTransaction: Transaction: {(Pos=2 TrxId=17 ParentId=15 ClientOrderId=0 ExecBrokerId=95 GatewayId=1179 SeqNumber=506 OrderNUmber=SAVARGAS01000005M17738E100000 IsOstat=Y OrderFlags=8 TrxFlag=Trade)OrderStatusTxt MessageId=212 ServerId=0 ServerType=OPC IsLittleEndian=F IpAddress=0 DataTime=20190910-10:05:58.000 OrderClass=1420 Symbol=_STW60.E1 Side=B(Buy) OrderNumber=SAVARGAS01000005M17738E100000 FillingECN= GatewayOrderID=4 ClOrderID=9598 Price=1003000000 Shares=20 SeqNumber=506 Position=2 OrderState=2(Filled) ChargeGW=20000000 ChargeAct=20000000 ChargeSec=20000000 ChargeExec=20000000 ChageClr=20000000 CancelTrxID=0 TransactionId=17 Destination=333 GWServerID=1 MsgSeqNumber=9 OPCServerID=1 Gateway=1179 OrderFlags=8 Currency=1 CurrencyCharge=1 CurrencyChargeGway=1 CurrencyChargeAct=1 CurrencyChargeSec=1 CurrencyChargeExec=1 CurrencyChargeClr=1 IsJunkTrade=0 Trade=89 Liquidity='' Account=1ORBX00001OR3SAVARGASUSD1 InfoCode=255 InfoText=LiqFlags=^Tag31=10.030000^Tag54=1^Tag150=2}
+
+
+* Convert Partially Filled Fix messages from Market into OSTAT
+
+	[10:35:56.050@107821/debug] DbTransactionBackup::AddTransaction: Transaction: {(Pos=2 TrxId=20 ParentId=18 ClientOrderId=0 ExecBrokerId=95 GatewayId=1179 SeqNumber=568 OrderNUmber=SAVARGAS01000006M17738E100000 IsOstat=Y OrderFlags=8 TrxFlag=Trade)OrderStatusTxt MessageId=212 ServerId=0 ServerType=OPC IsLittleEndian=F IpAddress=0 DataTime=20190910-10:35:56.000 OrderClass=1429 Symbol=_STW60.E1 Side=B(Buy) OrderNumber=SAVARGAS01000006M17738E100000 FillingECN= GatewayOrderID=5 ClOrderID=9599 Price=1005000000 Shares=50 SeqNumber=568 Position=2 OrderState=1(Partially Filled) ChargeGW=20000000 ChargeAct=20000000 ChargeSec=20000000 ChargeExec=20000000 ChageClr=20000000 CancelTrxID=0 TransactionId=20 Destination=333 GWServerID=1 MsgSeqNumber=11 OPCServerID=1 Gateway=1179 OrderFlags=8 Currency=1 CurrencyCharge=1 CurrencyChargeGway=1 CurrencyChargeAct=1 CurrencyChargeSec=1 CurrencyChargeExec=1 CurrencyChargeClr=1 IsJunkTrade=0 Trade=89 Liquidity='' Account=1ORBX00001OR3SAVARGASUSD1 InfoCode=255 InfoText=LiqFlags=^Tag31=10.050000^Tag54=1^Tag150=1}
+
+	
+	* Convert Rejected Fix messages from Market into OSTAT
+	
+	FALTA AQUI
+
+- CONNECTION TO SERVERS
+	* Connect to its corresponding Asset Class OPC
+	Gateway logs
+	[07:00:00.567@67524/info] [GController] SendServerState [ServerState MessageId=97 ServerId=1 ServerType=GS IsLittleEndian=T(73, 28, 1)(73, 128, 1)(93, 18, 1)(93, 30, 1)(93, 31, 1)(93, 34, 1)(93, 117, 1)(93, 161, 1)(95, 1179, 1)(95, 1180, 1)(95, 1181, 1)]
+	[07:00:00.567@67524/debug] ClientProcessorV2::SendMessage: 0x7f17f1ffa740  #  1 OPC : %s
+
+	OPC logs
+	[07:00:00.567@115970/debug] GatewayListener::ReadSession : messageid=97
+	[07:00:00.567@115970/debug] GatewayListener::ReadSession : try to read the rest size= 3081
+	[07:00:00.567@115970/info] GatewayListener::ProcessStateMsg : gateway server 1, updated states - Broker [73]  : {(28, up)(128, up)} Broker [93]  : {(18, up)(30, up)(31, up)(34, up)(117, up)(161, up)} Broker [95]  : {(1179, up)(1180, up)(1181, up)}
+
+
+	
+	* Connect to its corresponding Asset Class Script Server
+	Gateway log
+	[07:00:00.567@67524/debug] ClientProcessorV2::SendMessage: 0x7f17f2ffc740  #  1 SS  : %s
+
+	Script server log
+	[07:00:00.567@115805/debug] GatewayListener::ReadSession : messageid=97
+	[07:00:00.567@115805/debug] GatewayListener::ReadSession : try to read the rest size= 3081
+	[07:00:00.567@115805/info] GatewayListener::ProcessStateMsg : gateway server 1, updated states - Broker [73]  : {(28, up)(128, up)} Broker [93]  : {(18, up)(30, up)(31, up)(34, up)(117, up)(161, up)} Broker [95]  : {(1179, up)(1180, up)(1181, up)}
+
+	
+	* Connect to OSM
+	Gateway server
+	[09:30:23.332@111735/debug] ClientProcessorV2::SendMessage: 0x7f17f3ffe740  #  1 OSM : %s
+
+	OSM server
+	[09:30:23.332@111734/debug] GatewayListener::ReadSession : messageid=211
+	[09:30:23.332@111734/debug] GatewayListener::ReadSession : try to read the rest size= 375
+
+
+- CONNECTION TO EXECUTION BROKERS (MARKET)
+* Load all Execution Brokers configuration from EXECUTION_BROKER_SESSION table with column ENABLE = Y and corresponding Gateway_Server_ID
+	Gateway log
+	# server_id: 1
+	[06:00:01.586@90045/info] [DBManager]  Execute: call sp_LoadGatewayOfficeForExecutionBroker(1)
+
+
+	Execution Broker log
+	[06:00:01.577@90346/debug] InitDb::LoadServer :  ServerConfiguration :  AssetClass =1, HostId = 2, RegionId = 1, ServerId = 13, ReadPort = 5105, WritePort = 0, Time Out=0, Number Of Connections=0, HostName = , IP =10.88.193.221, Available = 0, Enabled = 1, ThreadPoolSize 0
+	
+
+	[06:00:01.587@90045/debug] [DBManager]  Gateway-Office (1179-OR3), execution broker Id (95)
+	[06:00:01.587@90045/debug] [DBManager]  Gateway-Office (1180-OR3), execution broker Id (95)
+	[06:00:01.587@90045/debug] [DBManager]  Gateway-Office (1181-OR3), execution broker Id (95)
+
+	
+
+* Connect to all Execution Brokers using the configuration loaded
+* Try to connect indefinitely until it successfully connects to them
+
+- SEND OSTATS
+	* Process ChangeOrderFlag request and convert into OSTAT
+	
+	[16:17:19.130@44818/info] ClientProcessorV2::ProcessMessage: OrderChangeRequest: Trader=SAVARGAS, OrderNumber=SAVARGAS01000010M17738E100000, OrderFlags=40, GWServerId=1, GatewayId=1179, TrxId=95915
+
+	[16:17:19.130@107815/debug] DbTransactionBackup::AddTransaction: Transaction: {(Pos=2 TrxId=34 ParentId=31 ClientOrderId=0 ExecBrokerId=0 GatewayId=1179 SeqNumber=0 OrderNUmber=SAVARGAS01000010M17738E100000 IsOstat=Y OrderFlags=8 TrxFlag=NONE)OrderStatus: MessageId=211 ServerId=0 ServerType=OPC IsLittleEndian=F IpAddress=0 DataTime=20190910-16:17:19.130 OrderClass=1420 Symbol=_STW60.E1 Side=B(Buy) OrderNumber=SAVARGAS01000010M17738E100000 FillingECN= GatewayOrderID= ClOrderID= Price=999000000 Shares=0 SeqNumber=0 Position=2 OrderState=204(Order Flags Modified) ChargeGW=0 ChargeAct=0 ChargeSec=0 ChargeExec=0 ChageClr=0 CancelTrxID=0 TransactionId=34 Destination=333 GWServerID=1 MsgSeqNumber=18 OPCServerID=1 Gateway=1179 OrderFlags=40 Currency=1 CurrencyCharge=0 CurrencyChargeGway=0 CurrencyChargeAct=0 CurrencyChargeSec=0 CurrencyChargeExec=0 CurrencyChargeClr=0 IsJunkTrade=0 Trade=78 Liquidity='' Account=1ORBX00001OR3SAVARGASUSD1 InfoCode=255}
+
+
+	* Send OSTATS to OPC
+	gateway log
+	[16:20:48.066@107821/debug] DbTransactionBackup::AddTransaction: Transaction: {(Pos=2 TrxId=41 ParentId=39 ClientOrderId=0 ExecBrokerId=95 GatewayId=1179 SeqNumber=1271 OrderNUmber=SAVARGAS01000011M17738E100000 IsOstat=Y OrderFlags=8 TrxFlag=Trade)OrderStatusTxt MessageId=212 ServerId=0 ServerType=OPC IsLittleEndian=F IpAddress=0 DataTime=20190910-16:20:48.000 OrderClass=1420 Symbol=_STW60.E1 Side=B(Buy) OrderNumber=SAVARGAS01000011M17738E100000 FillingECN= GatewayOrderID=9 ClOrderID=95917 Price=1013000000 Shares=30 SeqNumber=1271 Position=2 OrderState=2(Filled) ChargeGW=20000000 ChargeAct=20000000 ChargeSec=20000000 ChargeExec=20000000 ChageClr=20000000 CancelTrxID=0 TransactionId=41 Destination=333 GWServerID=1 MsgSeqNumber=22 OPCServerID=1 Gateway=1179 OrderFlags=8 Currency=1 CurrencyCharge=1 CurrencyChargeGway=1 CurrencyChargeAct=1 CurrencyChargeSec=1 CurrencyChargeExec=1 CurrencyChargeClr=1 IsJunkTrade=0 Trade=89 Liquidity='' Account=1ORBX00001OR3SAVARGASUSD1 InfoCode=255 InfoText=LiqFlags=^Tag31=10.130000^Tag54=1^Tag150=2}
+	[16:20:48.066@44820/debug] ClientProcessorV2::SendMessage: 0x7f17f1ffa740  #  1 OPC : %s
+
+
+	OPC log
+	[16:20:48.066@44819/debug] GatewayListener::ReadSession : messageid=212
+	[16:20:48.066@44819/debug] GatewayListener::ReadSession : try to read the rest size= 631
+	[16:20:48.066@44819/debug] GatewayListener::ReadSession : Recv'd: OrderStatusTxt MessageId=212 ServerId=0 ServerType=OPC IsLittleEndian=F IpAddress=0 DataTime=20190910-16:20:48.000 OrderClass=1420 Symbol=_STW60.E1 Side=B(Buy) OrderNumber=SAVARGAS01000011M17738E100000 FillingECN= GatewayOrderID=9 ClOrderID=95917 Price=1013000000 Shares=30 SeqNumber=1271 Position=2 OrderState=2(Filled) ChargeGW=20000000 ChargeAct=20000000 ChargeSec=20000000 ChargeExec=20000000 ChageClr=20000000 CancelTrxID=0 TransactionId=41 Destination=333 GWServerID=1 MsgSeqNumber=22 OPCServerID=1 Gateway=1179 OrderFlags=8 Currency=1 CurrencyCharge=1 CurrencyChargeGway=1 CurrencyChargeAct=1 CurrencyChargeSec=1 CurrencyChargeExec=1 CurrencyChargeClr=1 IsJunkTrade=0 Trade=89 Liquidity='' Account=1ORBX00001OR3SAVARGASUSD1 InfoCode=255 InfoText=LiqFlags=^Tag31=10.130000^Tag54=1^Tag150=2
+
+	
+	* Send OSTATS to OSM
+	[16:25:28.071@111735/debug] ClientProcessorV2::SendMessage: 0x7f17f3ffe740  #  1 OSM : %s
+
+	[16:25:28.072@111734/debug] GatewayListener::ReadSession : messageid=211
+	[16:25:28.072@111734/debug] GatewayListener::ReadSession : try to read the rest size= 375
+	[16:25:28.072@111734/debug] GatewayListener::ReadSession : Recv'd: OrderStatus: MessageId=211 ServerId=0 ServerType=OPC IsLittleEndian=F IpAddress=0 DataTime=20190910-16:25:28.000 OrderClass=1420 Symbol=_STW60.E1 Side=B(Buy) OrderNumber=SAVARGAS01000012M17738E100000 FillingECN= GatewayOrderID=10 ClOrderID=95919 Price=998000000 Shares=100 SeqNumber=1283 Position=3 OrderState=4(Cancelled) ChargeGW=0 ChargeAct=0 ChargeSec=0 ChargeExec=0 ChageClr=0 CancelTrxID=0 TransactionId=45 Destination=333 GWServerID=1 MsgSeqNumber=24 OPCServerID=1 Gateway=1179 OrderFlags=8 Currency=1 CurrencyCharge=0 CurrencyChargeGway=0 CurrencyChargeAct=0 CurrencyChargeSec=0 CurrencyChargeExec=0 CurrencyChargeClr=0 IsJunkTrade=0 Trade=78 Liquidity='' Account=1ORBX00001OR3SAVARGASUSD1 InfoCode=255
+	[16:25:28.072@12319/debug] osm_controller :  dispatch the execution report from Gatewayserver
+
+	
+	* Send OSTATS to ScriptSrv
+	[16:28:18.665@115806/debug] ClientProcessorV2::SendMessage: 0x7f17f2ffc740  #  1 SS  : %s
+	[16:28:18.665@115805/debug] GatewayListener::ReadSession : messageid=211
+	[16:28:18.665@115805/debug] GatewayListener::ReadSession : try to read the rest size= 375
+	[16:28:18.665@115805/debug] GatewayListener::ReadSession : Recv'd: OrderStatus: MessageId=211 ServerId=0 ServerType=OPC IsLittleEndian=F IpAddress=0 DataTime=20190910-16:28:18.000 OrderClass=1420 Symbol=_STW60.E1 Side=B(Buy) OrderNumber=SAVARGAS01000013M17738E100000 FillingECN= GatewayOrderID=11 ClOrderID=95921 Price=918000000 Shares=100 SeqNumber=1292 Position=3 OrderState=4(Cancelled) ChargeGW=0 ChargeAct=0 ChargeSec=0 ChargeExec=0 ChageClr=0 CancelTrxID=0 TransactionId=49 Destination=333 GWServerID=1 MsgSeqNumber=26 OPCServerID=1 Gateway=1179 OrderFlags=8 Currency=1 CurrencyCharge=0 CurrencyChargeGway=0 CurrencyChargeAct=0 CurrencyChargeSec=0 CurrencyChargeExec=0 CurrencyChargeClr=0 IsJunkTrade=0 Trade=78 Liquidity='' Account=1ORBX00001OR3SAVARGASUSD1 InfoCode=255
+
+
+-  CALCULATE FEES
+	* Load all Fees from GATEWAY_FEE and DESTINATION_DEFAULT_FEE
+	
+	[06:00:19.049@121949/info] [DBManager]  Execute: call sp_GetGatewayFees(1179)
+	[06:00:19.076@121949/info] [DBManager]  Execute: call sp_GetGatewayDefFees(1179)
+	[06:00:19.077@121949/info] [DBManager]  Execute: call sp_GetGatewayDestination(1179)
+	[06:00:19.077@121949/info] [DBManager]  Execute: call sp_GetGatewayFees(1180)
+	[06:00:19.104@121949/info] [DBManager]  Execute: call sp_GetGatewayDefFees(1180)
+	[06:00:19.104@121949/info] [DBManager]  Execute: call sp_GetGatewayDestination(1180)
+	[06:00:19.104@121949/info] [DBManager]  Execute: call sp_GetGatewayFees(1181)
+	[06:00:19.131@121949/info] [DBManager]  Execute: call sp_GetGatewayDefFees(1181)
+	[06:00:19.131@121949/info] [DBManager]  Execute: call sp_GetGatewayDestination(1181)
+
+	* Evaluate Conditions everytime a FIX message for an order is received
+	[10:51:55.065@125030/info] [Charger]  EvaluateTrx(TrxID=3) - START
+	[10:51:55.065@125030/info] [Charger]  Add 0-Tag 31=10.060000
+	[10:51:55.065@125030/info] [Charger]  Add 1-Tag 54=1
+	[10:51:55.065@125030/info] [Charger]  Add 2-Tag 150=2
+	[10:51:55.065@125030/info] [Charger]  #3 Condition(ID=250009, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #3 Formula  (ID=250009, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total SecCharge =0.2
+	[10:51:55.065@125030/info] [Charger]  #2 Condition(ID=250008, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #2 Formula  (ID=250008, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total ActCharge =0.2
+	[10:51:55.065@125030/info] [Charger]  #1 Condition(ID=250007, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #1 Formula  (ID=250007, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total GWayCharge=0.2
+	[10:51:55.065@125030/info] [Charger]  #5 Condition(ID=250011, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #5 Formula  (ID=250011, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total ClrCharge =0.2
+	[10:51:55.065@125030/info] [Charger]  #4 Condition(ID=250010, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #4 Formula  (ID=250010, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total ExecCharge=0.2
+	[10:51:55.065@125030/info] [Charger]  EvaluateTrx(TrxID=3) - STOP
+	[10:51:55.065@125030/info] [Trx] TrxID=3 CHARGE
+
+	
+	
+	* Charge Fees (Gateway, Activity, Clearing, Security and Execution Fees) from GATEWAY_FEE table whenever a condition is met for any Order State
+	
+	[10:51:55.065@125030/info] [Charger]  Add 0-Tag 31=10.060000
+	[10:51:55.065@125030/info] [Charger]  Add 1-Tag 54=1
+	[10:51:55.065@125030/info] [Charger]  Add 2-Tag 150=2
+	[10:51:55.065@125030/info] [Charger]  #3 Condition(ID=250009, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #3 Formula  (ID=250009, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total SecCharge =0.2
+	[10:51:55.065@125030/info] [Charger]  #2 Condition(ID=250008, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #2 Formula  (ID=250008, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total ActCharge =0.2
+	[10:51:55.065@125030/info] [Charger]  #1 Condition(ID=250007, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #1 Formula  (ID=250007, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total GWayCharge=0.2
+	[10:51:55.065@125030/info] [Charger]  #5 Condition(ID=250011, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #5 Formula  (ID=250011, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total ClrCharge =0.2
+	[10:51:55.065@125030/info] [Charger]  #4 Condition(ID=250010, T31>=0 AND (T54=1 OR T54=3) AND (T150=1 OR T150=2))=true
+	[10:51:55.065@125030/info] [Charger]  #4 Formula  (ID=250010, Fee)=0.2
+	[10:51:55.065@125030/info] [Charger]  Total ExecCharge=0.2
+
+	
+	* Charge Fees (Gateway Fee) from DESTINATION_DEFAULT_FEE whenever a condition was not found in GATEWAY_FEE table but it was found on DESTINATION_DEFAULT_FEE  for Filled and Part Filled orders only
+	
+	Destination default filled
+	[16:01:55.140@12269/debug] Charger::run: Processing new TrxId=119 State=2
+	[16:01:55.140@12269/debug] Charger::run: Applying fees for TrxId=119 State=2
+	[16:01:55.140@12269/info] [Charger]  EvaluateTrx(TrxID=119) - START
+	[16:01:55.140@12269/info] [Charger]  Add 0-Tag 31=10.060000
+	[16:01:55.140@12269/info] [Charger]  Add 1-Tag 54=1
+	[16:01:55.140@12269/info] [Charger]  Add 2-Tag 150=2
+	[16:01:55.140@12269/debug] SIZE : 0 < 1
+	[16:01:55.140@12269/info] [Charger]  Total GWayCharge=0.8048
+	[16:01:55.140@12269/info] [Charger]  No GWFee found or matched. Default fee condition (40bps*Sh*Pr) applied.
+	[16:01:55.140@12269/info] [Charger]  EvaluateTrx(TrxID=119) - STOP
+
+	Destination default part fill
+	[16:02:51.122@12269/debug] Charger::run: Processing new TrxId=122 State=1
+	[16:02:51.122@12269/debug] Charger::run: Applying fees for TrxId=122 State=1
+	[16:02:51.122@12267/info] [TrxData] FindTrx: TrxID=120 (parent)
+	[16:02:51.122@12269/info] [Charger]  EvaluateTrx(TrxID=122) - START
+	[16:02:51.122@9437/info] [TrxStorage] SetRecord TrxID(123) Pos(122)
+	[16:02:51.122@12267/debug] Trx::AddTimezoneOffset: Timestamp with timezone offset added: 20190912-16:02:51.000
+	[16:02:51.122@12269/info] [Charger]  Add 0-Tag 31=10.100000
+	[16:02:51.122@12267/info] [Trx] TrxID=123 OSTAT: SAVARGAS02000003M177390100000
+	[16:02:51.122@12269/info] [Charger]  Add 1-Tag 54=1
+	[16:02:51.122@12269/info] [Charger]  Add 2-Tag 150=1
+	[16:02:51.122@12267/info] [TrxData] FindTrx: TrxID=120(parent)
+	[16:02:51.122@9437/info] [TrxStorage] SetRecord TrxID(123) Pos(122)
+	[16:02:51.122@12267/info] [Factory] ExecRep:[2] OrdID(SAVARGAS02000003M177390100000)  ClOrdID(95139)  TrxID(123)  ParentID(120)
+	[16:02:51.122@12267/debug] [Factory] Added TrxID(123) to Parent(120)
+	[16:02:51.122@12267/info] [Charger]  AddTrx: TrxID(123)
+	[16:02:51.122@12269/debug] SIZE : 0 < 1
+	[16:02:51.122@12269/info] [Charger]  Total GWayCharge=1.212
+	[16:02:51.122@12269/info] [Charger]  No GWFee found or matched. Default fee condition (40bps*Sh*Pr) applied.
+	[16:02:51.122@12269/info] [Charger]  EvaluateTrx(TrxID=122) - STOP
+
+	
+	* Charge Hardcoded Fees (Gateway Fee) when no condition was found on GATEWAY_FEE or DESTINATION_DEFAULT_FEE for Filled and Part Filled orders only
+	
+	
+	* Apply different formulas correctly
+
+- ROUTING ORDERS
+	* Send Fix message to the Execution Broker set in GATEWAY_EXEC_BROKER_OFFICE  depending on Gateway and Office ID
+	* Send Fix message to the Execution Broker set in GATEWAY_EXEC_BROKER_OFFICE  depending on Gateway and Visiting Office ID for Visiting Traders
+
+- RESTART INTRADAY
+	* Load Transactions from trx file
+* Load Transactions from Database when trx file doesn't exist
+* Load Transaction for the Corresponding Asset Class only
+
+- SAVE DATA INTO DATABASE
+	* Write into ORDERS table
+	* Write into ORDER_TRANSACTION table
+	* Write into ORDER_FIX_TAGS table
+	* Write into GATEWAY_SERVER_TRANSACTION table
+	* Commit queries using COMMIT_TIME value from GATEWAY_SERVER table (Commit logs can be seen in verbose mode)
+
+- PROCESS BUSTED MESSAGES
+	* Process the Busted Fix message received from Market
+* Convert the Busted Fix message into Ostat with entry B
+* Save Busted State in Database with suffix J
+* Create anti order with Opposite side, same price and opposite Fees
+* Save anti order into database
+
+- IGNORE BUSTED MESSAGES
+	* Load Busted Denial period from PERIODS table per market
+	* Ignore the Busted message if arrives within Busted Denial Period
